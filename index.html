@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Mi Buscador</title>
+<style>
+body{font-family:arial;text-align:center;background:#fff;margin:0;padding:100px 20px}
+#logo{font-size:70px;color:#4285f4}
+#search{width:500px;height:40px;font-size:16px;border:1px solid #dfe1e5;border-radius:24px;padding:0 20px}
+#resultados{text-align:left;max-width:600px;margin:20px auto}
+a{color:#1a0dab;text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div id="logo">🔍</div>
+<input type="text" id="search" placeholder="Buscar en Chile...">
+<div id="resultados"></div>
+<script>
+const data=[
+{title:"Gobierno Chile",url:"https://www.chile.gob.cl",desc:"Portal oficial chileno"},
+{title:"Wikipedia Chile",url:"https://es.wikipedia.org/wiki/Chile",desc:"Enciclopedia sobre Chile"},
+{title:"Emol Noticias",url:"https://www.emol.com",desc:"Últimas noticias Chile"}
+];
+document.getElementById('search').oninput=function(){
+let q=this.value.toLowerCase(),res=data.filter(r=>r.title.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q));
+document.getElementById('resultados').innerHTML=res.map(r=>`<div><a href="${r.url}" target="_blank"><b>${r.title}</b></a><br><span>${r.desc}</span></div>`).join('');
+};
+</script>
+</body>
+</html>
